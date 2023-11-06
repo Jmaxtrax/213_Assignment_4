@@ -10,6 +10,20 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Login ID="Login1" runat="server">
+            </asp:Login>
+        </p>
     </form>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
