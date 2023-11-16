@@ -83,10 +83,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="KarateSchool.designer.cs">
+    <Compile Include="KarateSchools.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KarateSchool.dbml</DependentUpon>
+      <DependentUpon>KarateSchools.dbml</DependentUpon>
     </Compile>
     <Compile Include="mywork\Administrator.aspx.cs">
       <DependentUpon>Administrator.aspx</DependentUpon>
@@ -126,12 +126,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KarateSchool.dbml">
+    <Content Include="mywork\Site1.Master" />
+    <Content Include="KarateSchools.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>KarateSchool.designer.cs</LastGenOutput>
+      <LastGenOutput>KarateSchools.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="mywork\Site1.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -147,8 +147,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="KarateSchool.dbml.layout">
-      <DependentUpon>KarateSchool.dbml</DependentUpon>
+    <None Include="KarateSchools.dbml.layout">
+      <DependentUpon>KarateSchools.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>
