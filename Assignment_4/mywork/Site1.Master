@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Assignment_4.mywork.Site1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Your Application</title>
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css" />
+    <asp:ContentPlaceHolder runat="server" ID="head"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-4"><%: Page.Title %></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
