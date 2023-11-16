@@ -14,10 +14,7 @@ namespace Assignment_4.mywork
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
 
-            }
         }
 
     }
