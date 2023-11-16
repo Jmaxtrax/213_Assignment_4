@@ -15,7 +15,7 @@ namespace Assignment_4.mywork
             { "member2", "password2" },
             { "instructor1", "password3" },
             { "instructor2", "password4" },
-            { "admin", "adminpassword" }
+            { "admin", "admin" }
         };
 
         protected void btnLogin_ServerClick(object sender, EventArgs e)
