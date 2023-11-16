@@ -73,7 +73,10 @@
       <DependentUpon>KarateSchool.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
+    <Content Include="mywork\Administrator.aspx" />
+    <Content Include="mywork\Instructor.aspx" />
+    <Content Include="mywork\Logon.aspx" />
+    <Content Include="mywork\Member.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -85,12 +88,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KarateSchool.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="mywork\Administrator.aspx.cs">
+      <DependentUpon>Administrator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="mywork\Administrator.aspx.designer.cs">
+      <DependentUpon>Administrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mywork\Instructor.aspx.cs">
+      <DependentUpon>Instructor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mywork\Instructor.aspx.designer.cs">
+      <DependentUpon>Instructor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mywork\Logon.aspx.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mywork\Logon.aspx.designer.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mywork\Member.aspx.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mywork\Member.aspx.designer.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mywork\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mywork\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +131,7 @@
       <LastGenOutput>KarateSchool.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="mywork\Site1.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

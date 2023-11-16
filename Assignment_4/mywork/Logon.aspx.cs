@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Assignment_4
+namespace Assignment_4.mywork
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Logon : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
