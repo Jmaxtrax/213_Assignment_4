@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mywork/Site1.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Inherits="Assignment_4.mywork.Member" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -6,14 +7,16 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h2>Welcome, <asp:Label ID="lblMemberName" runat="server" Text=""></asp:Label>!</h2>
+                <h2>Welcome,
+                    <asp:Label ID="lblMemberName" runat="server" Text=""></asp:Label>!</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <h3>Payments History</h3>
                 <form runat="server">
-                    <asp:GridView ID="gvPayments" runat="server" AutoGenerateColumns="False" CssClass="table">
+                    <asp:GridView ID="gvPayments" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+                        <HeaderStyle CssClass="thead-light" />
                         <Columns>
                             <asp:BoundField DataField="SectionName" HeaderText="Section Name" SortExpression="SectionName" />
                             <asp:BoundField DataField="InstructorFirstName" HeaderText="Instructor First Name" SortExpression="InstructorFirstName" />
