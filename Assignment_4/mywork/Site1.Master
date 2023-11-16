@@ -4,11 +4,40 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - Your Application</title>
-    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css" />
+    <title><%: Page.Title %> - Karate School</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <asp:ContentPlaceHolder runat="server" ID="head"></asp:ContentPlaceHolder>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Karate School</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -21,6 +50,13 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer py-3 bg-light fixed-bottom">
+        <div class="container">
+            <span class="text-muted">Your Application &copy; <%= DateTime.Now.Year %></span>
+        </div>
+    </footer>
+
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
