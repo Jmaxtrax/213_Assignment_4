@@ -27,29 +27,67 @@ namespace Assignment_4.mywork
             dbcon = new KarateSchoolsDataContext(connString);
 
             // grab current member 
-            var myMember = dbcon.Members.FirstOrDefault(m => m.Member_UserID == (int) Session["UserID"]);
-            lblMemberName.Text = myMember.MemberFirstName + " " + myMember.MemberLastName;
+            var myMember = dbcon.Members.FirstOrDefault(m => m.Member_UserID == (int)Session["UserID"]);
+            try
+            {
+                lblMemberName.Text = myMember.MemberFirstName + " " + myMember.MemberLastName;
+            }
+            catch(Exception ex)
+            {
 
-            // display all member data with secion name, instructor names, payment dates, and current payment amounts
+            }
+            var records0 = from member in dbcon.Members
+                           join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
+                           join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
+                           where member.Member_UserID == (int)Session["UserID"]
+                           select new
+                           {
+                               section.SectionName,
+                               section.SectionID,
+                               section.SectionFee,
+                               section.SectionStartDate,
+                               instructor.InstructorFirstName,
+                               instructor.InstructorLastName,
+
+
+                           };
+
+            decimal totalPayments = records0.Sum(section => section.SectionFee);
+
             var records = from member in dbcon.Members
                           join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
                           join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
                           where member.Member_UserID == (int)Session["UserID"]
                           select new
                           {
-                              member.MemberFirstName,
-                              member.MemberLastName,
-                              member.MemberDateJoined,
-                              member.MemberPhoneNumber,
-                              member.MemberEmail,
                               section.SectionName,
+                              section.SectionID,
+                              section.SectionFee,
+                              section.SectionStartDate,
                               instructor.InstructorFirstName,
-                              instructor.InstructorLastName
+                              instructor.InstructorLastName,
+
+                              sectionTotal = new[] { new { TotalPayments = totalPayments } }
                           };
 
-            gvMember.DataSource = records;
+
+
+            gvMember.DataSource = new[] { new { TotalPayments = totalPayments } };
             gvMember.DataBind();
+
+            gvMember0.DataSource = records;
+            gvMember0.DataBind();
+
+
         }
 
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Cookies.Clear();
+            Response.Redirect("~/mywork/Logon.aspx");
+        }
     }
 }

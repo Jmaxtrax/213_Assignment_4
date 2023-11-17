@@ -1,8 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mywork/Site1.Master" AutoEventWireup="true" CodeBehind="Instructor.aspx.cs" Inherits="Assignment_4.mywork.Instructor" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            font-size: small;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
+        <h2>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Logout" Height="32px" Width="111px" CssClass="auto-style1" />
+        </h2>
         <h2>Welcome
             <asp:Label ID="lblInstructorName" runat="server"></asp:Label>
             !</h2>
