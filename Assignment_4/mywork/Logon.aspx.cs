@@ -28,11 +28,10 @@ namespace Assignment_4.mywork
 
                 // pull usertype from selecteduser and set the currentuser to selecteduser
                 string userType = selectedUser.UserType.ToString().ToUpper();
-                CurrentUser.UserID = selectedUser.UserID;
-                CurrentUser.UserType = userType;
                 
                 // add user to session
-                Session.Add("UserID", CurrentUser.UserID);
+                Session.Add("UserID", selectedUser.UserID);
+                Session.Add("UserType", userType);
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, true);
 
                 // redirect based on usertype

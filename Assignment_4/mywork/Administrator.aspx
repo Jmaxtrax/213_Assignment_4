@@ -8,33 +8,42 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Member Information</h2>
-                    <asp:GridView ID="gvMembers" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
-                        <HeaderStyle CssClass="thead-light" />
-                        <Columns>
-                            <asp:BoundField DataField="MemberFirstName" HeaderText="First Name" SortExpression="MemberFirstName" />
-                            <asp:BoundField DataField="MemberLastName" HeaderText="Last Name" SortExpression="MemberLastName" />
-                            <asp:BoundField DataField="MemberPhoneNumber" HeaderText="Phone Number" SortExpression="MemberPhoneNumber" />
-                            <asp:BoundField DataField="MemberDateJoined" HeaderText="Date Joined" SortExpression="MemberDateJoined" DataFormatString="{0:yyyy-MM-dd}" />
-                        </Columns>
-                    </asp:GridView>
+                    <h2>Member Information<asp:GridView ID="gvMember" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#DCDCDC" />
+                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#000065" />
+                        </asp:GridView>
+                    </h2>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-12">
-                    <h2>Instructor Information</h2>
-                    <asp:GridView ID="gvInstructors" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
-                        <HeaderStyle CssClass="thead-light" />
-                        <Columns>
-                            <asp:BoundField DataField="InstructorFirstName" HeaderText="First Name" SortExpression="InstructorFirstName" />
-                            <asp:BoundField DataField="InstructorLastName" HeaderText="Last Name" SortExpression="InstructorLastName" />
-                        </Columns>
-                    </asp:GridView>
+                    <h2>Instructor Information<asp:GridView ID="gvInstructor" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#DCDCDC" />
+                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#000065" />
+                        </asp:GridView>
+                    </h2>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-12">
                     <h2>Actions</h2>
+                    <p>//do stuff</p>
                     <!-- Add controls for adding, deleting, and assigning members to sections -->
                 </div>
             </div>
