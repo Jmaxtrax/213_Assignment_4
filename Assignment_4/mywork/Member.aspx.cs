@@ -19,21 +19,22 @@ namespace Assignment_4.mywork
         protected void Page_Load(object sender, EventArgs e)
         {
             // If a user is on a page that doesn't match their usertype, kick them back to the proper page.
-            if (CurrentUser.UserType != "MEMBER")
-                Response.Redirect(CurrentUser.GetRedirectString());
+            string currentUserType = (string)Session["UserType"];
+            if (currentUserType != "MEMBER")
+                Response.Redirect(UserUtils.GetRedirectString(currentUserType));
 
             // access db
             dbcon = new KarateSchoolsDataContext(connString);
 
             // grab current member 
-            var myMember = dbcon.Members.FirstOrDefault(m => m.Member_UserID == CurrentUser.UserID);
+            var myMember = dbcon.Members.FirstOrDefault(m => m.Member_UserID == (int) Session["UserID"]);
             lblMemberName.Text = myMember.MemberFirstName + " " + myMember.MemberLastName;
 
             // display all member data with secion name, instructor names, payment dates, and current payment amounts
             var records = from member in dbcon.Members
                           join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
                           join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
-                          where member.Member_UserID == CurrentUser.UserID
+                          where member.Member_UserID == (int)Session["UserID"]
                           select new
                           {
                               member.MemberFirstName,
