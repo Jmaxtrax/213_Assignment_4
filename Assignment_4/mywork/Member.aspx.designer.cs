@@ -15,6 +15,15 @@ namespace Assignment_4.mywork
     {
 
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
         /// lblMemberName control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Assignment_4.mywork
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMemberName;
+
+        /// <summary>
+        /// gvMember0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMember0;
 
         /// <summary>
         /// gvMember control.

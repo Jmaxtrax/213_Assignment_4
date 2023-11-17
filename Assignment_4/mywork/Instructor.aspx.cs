@@ -44,5 +44,13 @@ namespace Assignment_4.mywork
             gvInstructor.DataSource = records;
             gvInstructor.DataBind();
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Cookies.Clear();
+            Response.Redirect("~/mywork/Logon.aspx");
+        }
     }
 }

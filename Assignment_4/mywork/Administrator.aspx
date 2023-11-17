@@ -1,10 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mywork/Site1.Master" AutoEventWireup="true" CodeBehind="Administrator.aspx.cs" Inherits="Assignment_4.mywork.Administrator" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            font-size: small;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="FormId" runat="server">
+        <h2>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Logout" Height="39px" Width="116px" CssClass="auto-style1" />
+        </h2>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
