@@ -20,12 +20,41 @@ namespace Assignment_4.mywork
             if (currentUserType != "ADMINISTRATOR")
                 Response.Redirect(UserUtils.GetRedirectString(currentUserType));
 
-
+            // Load gridviews
+            LoadMembers();
+            LoadInstructors();
         }
 
         private void LoadMembers()
         {
             dbcon = new KarateSchoolsDataContext(connString);
+
+            var result = from member in dbcon.Members
+                         select new
+                         {
+                             member.MemberFirstName,
+                             member.MemberLastName,
+                             member.MemberPhoneNumber,
+                             member.MemberDateJoined
+                         };
+
+            gvMember.DataSource = result;
+            gvMember.DataBind();
+        }
+
+        private void LoadInstructors()
+        {
+            dbcon = new KarateSchoolsDataContext(connString);
+
+            var result = from instructor in dbcon.Instructors
+                         select new
+                         {
+                             instructor.InstructorFirstName,
+                             instructor.InstructorLastName
+                         };
+
+            gvInstructor.DataSource = result;
+            gvInstructor.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
