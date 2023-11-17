@@ -24,12 +24,12 @@ namespace Assignment_4.mywork
         protected global::System.Web.UI.WebControls.Label lblMemberName;
 
         /// <summary>
-        /// gvPayments control.
+        /// gvMember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPayments;
+        protected global::System.Web.UI.WebControls.GridView gvMember;
     }
 }

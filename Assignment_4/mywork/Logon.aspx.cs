@@ -29,6 +29,7 @@ namespace Assignment_4.mywork
                 // pull usertype from selecteduser and set the currentuser to selecteduser
                 string userType = selectedUser.UserType.ToString().ToUpper();
                 CurrentUser.UserID = selectedUser.UserID;
+                CurrentUser.UserType = userType;
                 
                 // add user to session
                 Session.Add("UserID", CurrentUser.UserID);
