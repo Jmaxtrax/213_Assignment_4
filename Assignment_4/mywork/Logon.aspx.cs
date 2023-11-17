@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,65 +12,47 @@ namespace Assignment_4.mywork
 {
     public partial class Logon : System.Web.UI.Page
     {
-        private readonly Dictionary<string, string> users = new Dictionary<string, string>
+        KarateSchoolsDataContext dbcon;
+        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            { "member1", "password1" },
-            { "member2", "password2" },
-            { "instructor1", "password3" },
-            { "instructor2", "password4" },
-            { "admin", "admin" }
-        };
+            // access db
+            string connString = ConfigurationManager.ConnectionStrings["KarateSchoolConnectionString"].ConnectionString;
+            dbcon = new KarateSchoolsDataContext(connString);
 
-        protected void btnLogin_ServerClick(object sender, EventArgs e)
-        {
-            string username = txtUsername.Value.Trim();
-            string password = txtPassword.Value.Trim();
-
-            if (AuthenticateUser(username, password))
+            try
             {
-                // Redirect based on user type
-                if (IsMember(username))
+                // grab user if they exist
+                var selectedUser = (from x in dbcon.NetUsers
+                                    where x.UserName == Login1.UserName && x.UserPassword == Login1.Password
+                                    select x).First();
+
+                // pull usertype from selecteduser and set the currentuser to selecteduser
+                string userType = selectedUser.UserType.ToString().ToUpper();
+                CurrentUser.UserID = selectedUser.UserID;
+                
+                // add user to session
+                Session.Add("UserID", CurrentUser.UserID);
+                FormsAuthentication.RedirectFromLoginPage(Login1.UserName, true);
+
+                // redirect based on usertype
+                switch (userType)
                 {
-                    Response.Redirect("Member.aspx");
-                }
-                else if (IsInstructor(username))
-                {
-                    Response.Redirect("Instructor.aspx");
-                }
-                else if (IsAdmin(username))
-                {
-                    Response.Redirect("Administrator.aspx");
+                    case "ADMINISTRATOR":
+                        Response.Redirect("~/mywork/Administrator.aspx");
+                        break;
+                    case "MEMBER":
+                        Response.Redirect("~/mywork/Member.aspx");
+                        break;
+                    case "INSTRUCTOR":
+                        Response.Redirect("~/mywork/Instructor.aspx");
+                        break;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                // Display authentication failure message
-                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Authentication failed!');", true);
+                // Write error to console for debug purposes
+                Console.WriteLine(ex.Message);
             }
-        }
-
-        private bool AuthenticateUser(string username, string password)
-        {
-            // Simple authentication logic (replace with database validation)
-            return users.ContainsKey(username) && users[username] == password;
-        }
-
-        private bool IsMember(string username)
-        {
-            // Check if the user is a member (customize based on your criteria)
-            return username.StartsWith("member", StringComparison.OrdinalIgnoreCase);
-        }
-
-        private bool IsInstructor(string username)
-        {
-            // Check if the user is an instructor (customize based on your criteria)
-            return username.StartsWith("instructor", StringComparison.OrdinalIgnoreCase);
-        }
-
-        private bool IsAdmin(string username)
-        {
-            // Check if the user is an admin (customize based on your criteria)
-            return string.Equals(username, "admin", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
