@@ -19,7 +19,7 @@ namespace Assignment_4.mywork
         protected void Page_Load(object sender, EventArgs e)
         {
             // If a user is on a page that doesn't match their usertype, kick them back to the proper page.
-            string currentUserType = (string)Session["UserType"];
+            string currentUserType = (string) Session["UserType"];
             if (currentUserType != "MEMBER")
                 Response.Redirect(UserUtils.GetRedirectString(currentUserType));
 
@@ -34,7 +34,7 @@ namespace Assignment_4.mywork
             var records = from member in dbcon.Members
                           join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
                           join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
-                          where member.Member_UserID == (int)Session["UserID"]
+                          where member.Member_UserID == (int) Session["UserID"]
                           select new
                           {
                               member.MemberFirstName,
