@@ -14,6 +14,8 @@ namespace Assignment_4.mywork
     {
         KarateSchoolsDataContext dbcon;
         string connString = ConfigurationManager.ConnectionStrings["KarateSchoolConnectionString"].ConnectionString;
+        List<int> memberIDs = new List<int>();
+        List<int> instructorIDs = new List<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +23,9 @@ namespace Assignment_4.mywork
             string currentUserType = (string)Session["UserType"];
             if (currentUserType != "ADMINISTRATOR")
                 Response.Redirect(UserUtils.GetRedirectString(currentUserType));
+
+            
+            if (IsPostBack) return;
 
             // Load gridviews
             LoadMembers();
@@ -38,11 +43,22 @@ namespace Assignment_4.mywork
                              member.MemberFirstName,
                              member.MemberLastName,
                              member.MemberPhoneNumber,
-                             member.MemberDateJoined,
+                             member.MemberDateJoined
                          };
+
+
 
             gvMember.DataSource = result;
             gvMember.DataBind();
+
+            var resultIDs = from member in dbcon.Members
+                           select new
+                           {
+                               member.Member_UserID
+                           };
+
+            foreach (var mem in resultIDs)
+                memberIDs.Add(mem.Member_UserID);
         }
 
         private void LoadInstructors()
@@ -58,6 +74,15 @@ namespace Assignment_4.mywork
 
             gvInstructor.DataSource = result;
             gvInstructor.DataBind();
+
+            var resultIDs = from instructor in dbcon.Instructors
+                            select new
+                            {
+                                instructor.InstructorID
+                            };
+
+            foreach (var inst in resultIDs)
+                instructorIDs.Add(inst.InstructorID);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -70,12 +95,58 @@ namespace Assignment_4.mywork
 
         protected void btnDeleteMember_Click(object sender, EventArgs e)
         {
+            dbcon = new KarateSchoolsDataContext(connString);
 
+            int selectedMemberID = memberIDs[gvMember.SelectedIndex];
+
+            using (SqlConnection context = new SqlConnection(connString))
+            {
+                context.Open();
+
+                // Delete from members first
+                string delete = "DELETE FROM Member WHERE Member_UserID = " + selectedMemberID;
+                SqlCommand sqlcom = new SqlCommand(delete, context);
+                sqlcom.ExecuteNonQuery();
+
+                // Then delete from netusers
+                string delete2 = "DELETE FROM NetUser WHERE UserID = " + selectedMemberID;
+                SqlCommand sqlcom2 = new SqlCommand(delete2, context);
+                sqlcom2.ExecuteNonQuery();
+
+                context.Close();
+            }
+
+            RefreshAssignDDL();
+            LoadMembers();
+            LoadInstructors();
         }
 
         protected void btnDeleteInstructor_Click(object sender, EventArgs e)
         {
+            dbcon = new KarateSchoolsDataContext(connString);
 
+            int selectedInstructorID = instructorIDs[gvInstructor.SelectedIndex];
+
+            using (SqlConnection context = new SqlConnection(connString))
+            {
+                context.Open();
+
+                // Delete from instructor first
+                string delete = "DELETE FROM Instructor WHERE InstructorID = " + selectedInstructorID;
+                SqlCommand sqlcom = new SqlCommand(delete, context);
+                sqlcom.ExecuteNonQuery();
+
+                // Then delete from netusers
+                string delete2 = "DELETE FROM NetUser WHERE UserID = " + selectedInstructorID;
+                SqlCommand sqlcom2 = new SqlCommand(delete2, context);
+                sqlcom2.ExecuteNonQuery();
+
+                context.Close();
+            }
+
+            RefreshAssignDDL();
+            LoadMembers();
+            LoadInstructors();
         }
 
         protected void btnAddMember_Click(object sender, EventArgs e)
@@ -181,7 +252,7 @@ namespace Assignment_4.mywork
                     RefreshAssignDDL();
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
 
             }
@@ -189,7 +260,7 @@ namespace Assignment_4.mywork
 
         protected void btnAssignMember_Click(object sender, EventArgs e)
         {
-            string sectionName = ddlMember.SelectedValue;
+            string sectionName = ddlSection.SelectedValue;
             DateTime sectionDate = DateTime.Now;
             string memberID = ddlMember.SelectedValue.ToString();
             string instructorID = ddlInstructor.SelectedValue.ToString();

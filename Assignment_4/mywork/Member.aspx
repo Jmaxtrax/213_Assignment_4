@@ -5,9 +5,6 @@
         .auto-style1 {
             font-size: medium;
         }
-        .auto-style2 {
-            width: 318px;
-        }
     </style>
 </asp:Content>
 
@@ -21,48 +18,21 @@
                     </h2>
                     <h2>Welcome,
                     <asp:Label ID="lblMemberName" runat="server" Text=""></asp:Label>!</h2>
-                    <p>
-                        <table style="width:100%;">
-                            <tr>
-                                <td class="auto-style2">
-                <asp:GridView ID="gvMember0" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
-                    <AlternatingRowStyle BackColor="#DCDCDC" />
-                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#000065" />
-                </asp:GridView>
-                                </td>
-                                <td>
-
-                <asp:GridView ID="gvMember" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
-                    <AlternatingRowStyle BackColor="#DCDCDC" />
-                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#000065" />
-                </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
-                    </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-
-                <br />
-                <br />
+                    <asp:GridView ID="gvMember" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#DCDCDC" />
+                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#000065" />
+                    </asp:GridView>
+                    <h2>Total Cost:
+                        <asp:Label ID="lblTotalCost" runat="server"></asp:Label>
+                    </h2>
                 </form>
             </div>
         </div>

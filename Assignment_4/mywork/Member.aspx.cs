@@ -36,7 +36,7 @@ namespace Assignment_4.mywork
             {
 
             }
-            var records0 = from member in dbcon.Members
+            var records = from member in dbcon.Members
                            join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
                            join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
                            where member.Member_UserID == (int)Session["UserID"]
@@ -52,31 +52,12 @@ namespace Assignment_4.mywork
 
                            };
 
-            decimal totalPayments = records0.Sum(section => section.SectionFee);
-
-            var records = from member in dbcon.Members
-                          join section in dbcon.Sections on member.Member_UserID equals section.Member_ID
-                          join instructor in dbcon.Instructors on section.Instructor_ID equals instructor.InstructorID
-                          where member.Member_UserID == (int) Session["UserID"]
-                          select new
-                          {
-                              section.SectionName,
-                              section.SectionID,
-                              section.SectionFee,
-                              section.SectionStartDate,
-                              instructor.InstructorFirstName,
-                              instructor.InstructorLastName,
-
-                              sectionTotal = new[] { new { TotalPayments = totalPayments } }
-                          };
+            decimal totalPayments = records.Sum(section => section.SectionFee);
+            lblTotalCost.Text = totalPayments.ToString("c");
 
 
-
-            gvMember.DataSource = new[] { new { TotalPayments = totalPayments } };
+            gvMember.DataSource = records;
             gvMember.DataBind();
-
-            gvMember0.DataSource = records;
-            gvMember0.DataBind();
 
 
         }
