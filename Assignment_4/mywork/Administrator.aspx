@@ -62,11 +62,9 @@
                 <div class="col-md-12">
                     <h2>Actions</h2>
                     <h3>Add new Member</h3>
-                    <p>UserID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtBxAddMemberUserID" runat="server"></asp:TextBox>
-                    </p>
                     <p>Username:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddMemberUsername" runat="server"></asp:TextBox>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
                     <p>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddMemberPassword" runat="server"></asp:TextBox>
@@ -86,9 +84,7 @@
                     <p>
                         <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />
                     </p>
-                    <h3>Add new Instructor</h3>
-                    <p>UserID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtBxAddInstructorUserID" runat="server"></asp:TextBox>
-                    </p>
+                    <h3>Add new Instructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
                     <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorUsername" runat="server"></asp:TextBox>
                     </p>
@@ -114,8 +110,15 @@
                             <asp:ListItem>Karate Chudan-Uke</asp:ListItem>
                         </asp:DropDownList>
                     </p>
+                    <p>Section Fee:
+                        <asp:TextBox ID="txtBxSectionFee" runat="server"></asp:TextBox>
+                    </p>
                     <p>Member:
                         <asp:DropDownList ID="ddlMember" runat="server" AutoPostBack="True">
+                        </asp:DropDownList>
+                    </p>
+                    <p>Instructor:
+                        <asp:DropDownList ID="ddlInstructor" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
                     </p>
                     <p>

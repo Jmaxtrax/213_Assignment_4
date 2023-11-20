@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,6 +25,7 @@ namespace Assignment_4.mywork
             // Load gridviews
             LoadMembers();
             LoadInstructors();
+            RefreshAssignDDL();
         }
 
         private void LoadMembers()
@@ -36,7 +39,6 @@ namespace Assignment_4.mywork
                              member.MemberLastName,
                              member.MemberPhoneNumber,
                              member.MemberDateJoined,
-                             member.Member_UserID
                          };
 
             gvMember.DataSource = result;
@@ -52,7 +54,6 @@ namespace Assignment_4.mywork
                          {
                              Instructor.InstructorFirstName,
                              Instructor.InstructorLastName,
-                             Instructor.InstructorID
                          };
 
             gvInstructor.DataSource = result;
@@ -79,50 +80,167 @@ namespace Assignment_4.mywork
 
         protected void btnAddMember_Click(object sender, EventArgs e)
         {
-            // Get the values from the textboxes
-            string userId = txtBxAddMemberUserID.Text;
-            string username = txtBxAddMemberUsername.Text;
-            string password = txtBxAddMemberPassword.Text;
-            string firstName = txtBxAddMemberFirstName.Text;
-            string lastName = txtBxAddMemberLastName.Text;
-            string phoneNumber = txtBxAddMemberPhone.Text;
-            string email = txtBxAddMemberEmail.Text;
-
-            // Create a new instance of the data context
-            dbcon = new KarateSchoolsDataContext(connString);
-            using (dbcon = new KarateSchoolsDataContext(connString))
+            try
             {
-                // Create a new Member object
-                Member newMember = new Member
+                // Get the values from the textboxes
+                string username = txtBxAddMemberUsername.Text.Trim();
+                string password = txtBxAddMemberPassword.Text.Trim();
+                string firstName = txtBxAddMemberFirstName.Text.Trim();
+                string lastName = txtBxAddMemberLastName.Text.Trim();
+                string phoneNumber = txtBxAddMemberPhone.Text.Trim();
+                string email = txtBxAddMemberEmail.Text.Trim();
+                DateTime dateJoined = DateTime.Now;
+                string userType = "Member";
+
+                dbcon = new KarateSchoolsDataContext(connString);
+
+                using (SqlConnection context = new SqlConnection(connString))
                 {
-                    //Member_UserID = userId,
-                    //MemberUsername = username,
-                   // MemberPassword = password,
-                   // MemberFirstName = firstName,
-                   // MemberLastName = lastName,
-                    //MemberPhoneNumber = phoneNumber,
-                    //MemberEmail = email
-                };
-
-                // Add the new member to the Members table
-                //dbcon.Members.InsertOnSubmit(newMember);
+                    string insert = "INSERT INTO NetUser(UserName, UserPassword, UserType) " +
+                "VALUES('" + username + "','" + password + "','" + userType + "')";
 
 
-                dbcon.SubmitChanges();
+                    context.Open();
+                    SqlCommand sqlcom = new SqlCommand(insert, context);
+                    sqlcom.ExecuteNonQuery();
+
+                    var selectedUser = (from x in dbcon.NetUsers
+                                        where x.UserName == txtBxAddMemberUsername.Text
+                                        select x).First();
+
+                    string iq2 = "INSERT INTO Member(Member_UserID, MemberFirstName, MemberLastName, MemberDateJoined, MemberPhoneNumber, MemberEmail) " +
+                   "VALUES(" + selectedUser.UserID + ",'" + firstName + "', '" + lastName + "', '" + dateJoined + "', '" + phoneNumber + "', '" + email + "')";
+
+
+                    SqlCommand sqlcom2 = new SqlCommand(iq2, context);
+                    sqlcom2.ExecuteNonQuery();
+
+                    context.Close();
+                    LoadMembers();
+                    RefreshAssignDDL();
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+
             }
 
-            // Refresh the GridView
-            LoadMembers();
+            // Refresh the GridView and clear boxes
+            txtBxAddMemberUsername.Text = "";
+            txtBxAddMemberPassword.Text = "";
+            txtBxAddMemberFirstName.Text = "";
+            txtBxAddMemberLastName.Text = "";
+            txtBxAddMemberPhone.Text = "";
+            txtBxAddMemberEmail.Text = "";
+
         }
 
         protected void btnAddInstructor_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Get the values from the textboxes
+                string username = txtBxAddInstructorUsername.Text.Trim();
+                string password = txtBxAddInstructorPassword.Text.Trim();
+                string firstName = txtBxAddInstructorFirstName.Text.Trim();
+                string lastName = txtBxAddInstructorLastName.Text.Trim();
+                string phoneNumber = txtBxAddInstructorPhone.Text.Trim();
+                string email = txtBxAddMemberEmail.Text.Trim();
+                string userType = "Instructor";
 
+                dbcon = new KarateSchoolsDataContext(connString);
+
+                using (SqlConnection context = new SqlConnection(connString))
+                {
+                    string insert = "INSERT INTO NetUser(UserName, UserPassword, UserType) " +
+                "VALUES('" + username + "','" + password + "','" + userType + "')";
+
+
+                    context.Open();
+                    SqlCommand sqlcom = new SqlCommand(insert, context);
+                    sqlcom.ExecuteNonQuery();
+
+                    var selectedUser = (from x in dbcon.NetUsers
+                                        where x.UserName == txtBxAddInstructorUsername.Text
+                                        select x).First();
+
+                    string insertQuery2 = "INSERT INTO Instructor(InstructorID, InstructorFirstName, InstructorLastName, InstructorPhoneNumber)" +
+                            " VALUES(" + selectedUser.UserID + ",'" + firstName + "', '" + lastName + "', '" + phoneNumber + "')";
+
+                    //connect query
+                    SqlCommand sqlcom2 = new SqlCommand(insertQuery2, context);
+
+                    sqlcom2.ExecuteNonQuery();
+
+                    context.Close();
+                    LoadMembers();
+                    LoadInstructors();
+                    RefreshAssignDDL();
+                }
+            }
+            catch(SqlException ex)
+            {
+
+            }
         }
 
         protected void btnAssignMember_Click(object sender, EventArgs e)
         {
+            string sectionName = ddlMember.SelectedValue;
+            DateTime sectionDate = DateTime.Now;
+            string memberID = ddlMember.SelectedValue.ToString();
+            string instructorID = ddlInstructor.SelectedValue.ToString();
+            string sectionFee = txtBxSectionFee.Text.Trim();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    dbcon = new KarateSchoolsDataContext(connString);
+
+                    string insertQuery = "INSERT INTO Section(SectionName, SectionStartDate, Member_ID, Instructor_ID, SectionFee) " +
+                     "VALUES('" + sectionName + "','" + sectionDate + "','" + memberID + "','" + instructorID + "','" + sectionFee + "')";
+
+
+                    conn.Open();
+
+                    SqlCommand sqlcom = new SqlCommand(insertQuery, conn);
+                    sqlcom.ExecuteNonQuery();
+
+                    RefreshAssignDDL();
+                    LoadMembers();
+                    LoadInstructors();
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+        }
+
+        public void RefreshAssignDDL()
+        {
+            var result = from x in dbcon.Members select new { Name = x.MemberFirstName + " " + x.MemberLastName, x.Member_UserID };
+
+            ddlMember.DataTextField = "Name";
+            ddlMember.DataValueField = "Member_UserID";
+
+            ddlMember.DataSource = result;
+            ddlMember.DataBind();
+
+            var result2 = from x in dbcon.Instructors select new { Name = x.InstructorFirstName + " " + x.InstructorLastName, x.InstructorID };
+
+            ddlInstructor.DataTextField = "Name";
+            ddlInstructor.DataValueField = "InstructorID";
+
+            ddlInstructor.DataSource = result2;
+            ddlInstructor.DataBind();
+
 
         }
+
     }
 }

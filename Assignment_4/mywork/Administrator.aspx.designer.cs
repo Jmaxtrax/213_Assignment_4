@@ -69,15 +69,6 @@ namespace Assignment_4.mywork
         protected global::System.Web.UI.WebControls.Button btnDeleteInstructor;
 
         /// <summary>
-        /// txtBxAddMemberUserID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBxAddMemberUserID;
-
-        /// <summary>
         /// txtBxAddMemberUsername control.
         /// </summary>
         /// <remarks>
@@ -139,15 +130,6 @@ namespace Assignment_4.mywork
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddMember;
-
-        /// <summary>
-        /// txtBxAddInstructorUserID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBxAddInstructorUserID;
 
         /// <summary>
         /// txtBxAddInstructorUsername control.
@@ -213,6 +195,15 @@ namespace Assignment_4.mywork
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
 
         /// <summary>
+        /// txtBxSectionFee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBxSectionFee;
+
+        /// <summary>
         /// ddlMember control.
         /// </summary>
         /// <remarks>
@@ -220,6 +211,15 @@ namespace Assignment_4.mywork
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMember;
+
+        /// <summary>
+        /// ddlInstructor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInstructor;
 
         /// <summary>
         /// btnAssignMember control.
