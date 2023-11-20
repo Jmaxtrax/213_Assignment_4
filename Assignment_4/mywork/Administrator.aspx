@@ -5,6 +5,10 @@
         .auto-style1 {
             font-size: small;
         }
+
+        h2, h3 {
+            color: #007BFF;
+        }
     </style>
 </asp:Content>
 
@@ -16,7 +20,6 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
-                    <p>&nbsp;</p>
                     <h2>Member Information</h2>
                     <p>
                         <asp:GridView ID="gvMember" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AutoGenerateSelectButton="True">
@@ -31,7 +34,7 @@
                             <SortedDescendingCellStyle BackColor="#CAC9C9" />
                             <SortedDescendingHeaderStyle BackColor="#000065" />
                         </asp:GridView>
-                        <asp:Button ID="btnDeleteMember" runat="server" Text="Delete Selected Member" />
+                        <asp:Button ID="btnDeleteMember" runat="server" Text="Delete Selected Member" OnClick="btnDeleteMember_Click" />
                     </p>
                     <p>
                         &nbsp;</p>
@@ -52,7 +55,7 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#000065" />
                     </asp:GridView>
-                    <asp:Button ID="btnDeleteInstructor" runat="server" Text="Delete Selected Instructor" />
+                    <asp:Button ID="btnDeleteInstructor" runat="server" Text="Delete Selected Instructor" OnClick="btnDeleteInstructor_Click" />
                 </div>
             </div>
             <div class="row mt-4">
@@ -62,13 +65,13 @@
                     <p>UserID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddMemberUserID" runat="server"></asp:TextBox>
                     </p>
-                    <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                    <p>Username:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddMemberUsername" runat="server"></asp:TextBox>
                     </p>
-                    <p>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                    <p>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddMemberPassword" runat="server"></asp:TextBox>
                     </p>
-                    <p>First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                    <p>First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                         <asp:TextBox ID="txtBxAddMemberFirstName" runat="server"></asp:TextBox>
                     </p>
                     <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -81,45 +84,48 @@
                         <asp:TextBox ID="txtBxAddMemberEmail" runat="server"></asp:TextBox>
                     </p>
                     <p>
-                        <asp:Button ID="btnAddMember" runat="server" Text="Add Member" />
+                        <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />
                     </p>
                     <h3>Add new Instructor</h3>
-                    <p>UserID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtBxAddInstructorUserID" runat="server"></asp:TextBox>
+                    <p>UserID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtBxAddInstructorUserID" runat="server"></asp:TextBox>
                     </p>
-                    <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                    <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorUsername" runat="server"></asp:TextBox>
                     </p>
                     <p>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorPassword" runat="server"></asp:TextBox>
                     </p>
-                    <p>First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    <p>First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorFirstName" runat="server"></asp:TextBox>
                     </p>
-                    <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorLastName" runat="server"></asp:TextBox>
                     </p>
-                    <p>Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p>Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtBxAddInstructorPhone" runat="server"></asp:TextBox>
                     </p>
                     <p>
-                        <asp:Button ID="btnAddInstructor" runat="server" Text="Add Instructor" />
+                        <asp:Button ID="btnAddInstructor" runat="server" Text="Add Instructor" OnClick="btnAddInstructor_Click" />
                     </p>
                     <h3>Assign Member to Section</h3>
                     <p>Section:&nbsp;&nbsp;
-                        <asp:DropDownList ID="ddlSection" runat="server">
+                        <asp:DropDownList ID="ddlSection" runat="server" AutoPostBack="True">
                             <asp:ListItem>Karate Age-Uke</asp:ListItem>
                             <asp:ListItem>Karate Chudan-Uke</asp:ListItem>
                         </asp:DropDownList>
                     </p>
                     <p>Member:
-                        <asp:DropDownList ID="ddlMember" runat="server">
+                        <asp:DropDownList ID="ddlMember" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
                     </p>
                     <p>
-                        <asp:Button ID="btnAssignMember" runat="server" Text="Assign" />
+                        <asp:Button ID="btnAssignMember" runat="server" Text="Assign" OnClick="btnAssignMember_Click" />
                     </p>
-                    <!-- Add controls for adding, deleting, and assigning members to sections -->
+                    <p>
+                        &nbsp;</p>
+                    <p>
+                        &nbsp;</p>
+                    
                 </div>
             </div>
         </div>
